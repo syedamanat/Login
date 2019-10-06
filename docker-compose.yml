@@ -1,0 +1,22 @@
+version: '3'
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: LoginTemplate
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    expose:
+      -  3306
+
+  backend:
+    build:
+      ./
+    depends_on:
+      - db
+    ports:
+      - 8999:8080
+    restart: always
+
